@@ -6,34 +6,27 @@ int main ( void ) {
   FILE * incoming_stream = fopen ( "test_file.csv", "r" );
   FILE * outgoing_stream = fopen ( "dump.csv", "w" );
   FILE * log_stream = fopen ( "log.txt", "w" );
+  int i = 0;
   char * pline;
-  int * pcommas;
-  int i = 1;
-  int j = 1;
-  char message[] = "Output file:\n";
+  int * pcomma;
 
-  &pline = message;
   do {
-    if ( *pline != '\n' ) {
+    if ( i = 0 )
+      fprintf ( log_stream, "log file starts here...\n" );
+    else {
       pline = get_line ( incoming_stream );
-      fprintf( outgoing_stream, "This is the #%i line processed:\n%s\n", i, pline );
+      fprintf ( stderr, "address of variable 'pline' is %p, stored address value is %p\n", &pline, *pline );
+      pcomma = get_comma_positions ( pline );
+      fprintf ( stderr, "address of variable 'pcomma' is %p, stored address value is %p\n", &pcomma, *pcomma );
       i++;
-      fprintf ( log_stream, "{ " );
-        for ( j = 0; j < 32; j++ ) {
-          if ( *(pcommas + j) != 0 ) {
-            if ( j == 0 )
-              fprintf ( log_stream, "%i", *(pcommas + j) );
-            else
-              fprintf ( log_stream, ", %i", *(pcommas + j) );
-          }
-          else
-            j = 32;
-        }
-    fprintf ( log_stream, " }\n" );
-  }
     }
-  }
+  } while ( *pline != '\n' );
+  fclose ( incoming_stream );
+  fclose ( outgoing_stream );
+  fclose ( log_stream );
   return 0;
+}
+
 
 /*
   while ( fprintf( outgoing_stream, "This is the line #%i, processed:\n%s\n", i, get_line ( incoming_stream ) ) == 1 ) {
