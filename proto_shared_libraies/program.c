@@ -2,8 +2,7 @@
 #include"program.h"
 
 int aflag = 0, bflag = 0, cflag = 0;
-char * aargum = NULL;
-char * bargum = NULL;
+char * aargum = NULL, * bargum = NULL;
 
 int prog_f1 ( void ) {
 	printf ( "this is the 'prog_f1' printing a message...\n" );
